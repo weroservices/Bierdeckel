@@ -8,20 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		36EA245920384EB8002FE005 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EA245820384EB8002FE005 /* AppDelegate.swift */; };
-		36EA245B20384EB8002FE005 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EA245A20384EB8002FE005 /* ViewController.swift */; };
 		36EA245E20384EB8002FE005 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36EA245C20384EB8002FE005 /* Main.storyboard */; };
 		36EA246020384EB8002FE005 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36EA245F20384EB8002FE005 /* Assets.xcassets */; };
 		36EA246320384EB8002FE005 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36EA246120384EB8002FE005 /* LaunchScreen.storyboard */; };
+		36EA246B20384FC1002FE005 /* AWMTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EA246A20384FC1002FE005 /* AWMTableViewController.swift */; };
+		36EA247120385303002FE005 /* PitcherTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EA247020385303002FE005 /* PitcherTableViewController.swift */; };
+		36EA247420387039002FE005 /* Bierdeckel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 36EA247220387039002FE005 /* Bierdeckel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		36EA245520384EB8002FE005 /* Bierdeckel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bierdeckel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36EA245820384EB8002FE005 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		36EA245A20384EB8002FE005 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		36EA245D20384EB8002FE005 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		36EA245F20384EB8002FE005 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		36EA246220384EB8002FE005 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		36EA246420384EB8002FE005 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		36EA246A20384FC1002FE005 /* AWMTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWMTableViewController.swift; sourceTree = "<group>"; };
+		36EA247020385303002FE005 /* PitcherTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PitcherTableViewController.swift; path = Bierdeckel/Controllers/PitcherTableViewController.swift; sourceTree = SOURCE_ROOT; };
+		36EA247320387039002FE005 /* Bierdeckel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Bierdeckel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,13 +59,47 @@
 			isa = PBXGroup;
 			children = (
 				36EA245820384EB8002FE005 /* AppDelegate.swift */,
-				36EA245A20384EB8002FE005 /* ViewController.swift */,
-				36EA245C20384EB8002FE005 /* Main.storyboard */,
-				36EA245F20384EB8002FE005 /* Assets.xcassets */,
-				36EA246120384EB8002FE005 /* LaunchScreen.storyboard */,
+				36EA246C20385088002FE005 /* Controllers */,
+				36EA246F203850E4002FE005 /* Data Model */,
+				36EA246D20385094002FE005 /* Views */,
+				36EA246E203850C2002FE005 /* Supporting Files */,
 				36EA246420384EB8002FE005 /* Info.plist */,
 			);
 			path = Bierdeckel;
+			sourceTree = "<group>";
+		};
+		36EA246C20385088002FE005 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				36EA246A20384FC1002FE005 /* AWMTableViewController.swift */,
+				36EA247020385303002FE005 /* PitcherTableViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		36EA246D20385094002FE005 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				36EA245C20384EB8002FE005 /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		36EA246E203850C2002FE005 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				36EA245F20384EB8002FE005 /* Assets.xcassets */,
+				36EA246120384EB8002FE005 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		36EA246F203850E4002FE005 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				36EA247220387039002FE005 /* Bierdeckel.xcdatamodeld */,
+			);
+			path = "Data Model";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,8 +174,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36EA245B20384EB8002FE005 /* ViewController.swift in Sources */,
 				36EA245920384EB8002FE005 /* AppDelegate.swift in Sources */,
+				36EA247420387039002FE005 /* Bierdeckel.xcdatamodeld in Sources */,
+				36EA247120385303002FE005 /* PitcherTableViewController.swift in Sources */,
+				36EA246B20384FC1002FE005 /* AWMTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +362,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		36EA247220387039002FE005 /* Bierdeckel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				36EA247320387039002FE005 /* Bierdeckel.xcdatamodel */,
+			);
+			currentVersion = 36EA247320387039002FE005 /* Bierdeckel.xcdatamodel */;
+			path = Bierdeckel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 36EA244D20384EB8002FE005 /* Project object */;
 }
