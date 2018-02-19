@@ -40,6 +40,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="awmTableView" destination="D0Q-mJ-fVd" id="S4r-PU-fdm"/>
                         <segue destination="0hw-qi-YnP" kind="show" identifier="goToPitcher" id="FyP-It-uhl"/>
                     </connections>
                 </tableViewController>
@@ -77,6 +78,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="pitcherTableView" destination="9Re-z2-0hH" id="bZm-n7-SvV"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ttQ-TH-hqG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -11,8 +11,11 @@ import CoreData
 
 class PitcherTableViewController: UITableViewController {
     
-    var pitcherArray = [Pitcher]()
+    @IBOutlet weak var pitcherTableView: UITableView!
     
+    var pitcherArray = [Pitcher]()
+    var dateFormatter = DateFormatter()
+
     var selectedAWM : AWM? {
         didSet{
             loadPitchers()
@@ -20,10 +23,11 @@ class PitcherTableViewController: UITableViewController {
     }
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        pitcherTableView.register(UINib(nibName: "PitcherTableViewCell", bundle: nil), forCellReuseIdentifier: "PitcherCell")
 
     }
 
@@ -31,14 +35,21 @@ class PitcherTableViewController: UITableViewController {
 
         return pitcherArray.count
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PitcherCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PitcherCell", for: indexPath) as! PitcherTableViewCell
 
         let pitcher = pitcherArray[indexPath.row]
         
-        cell.textLabel?.text = "Pitcher \(pitcher.nummer)"
+        cell.pitcherName.text = "Pitcher \(pitcher.nummer)"
+        
+        dateFormatter.dateFormat = "HH:mm:ss"
+
+        if let uhrzeit = pitcher.uhrzeit {
+            cell.pitcherUhrzeit.text = dateFormatter.string(from: pitcher.uhrzeit!)
+        } else {
+            cell.pitcherUhrzeit.text = ""
+        }
         
         return cell
     }

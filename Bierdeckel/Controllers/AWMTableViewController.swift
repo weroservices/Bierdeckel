@@ -11,36 +11,43 @@ import CoreData
 
 class AWMTableViewController: UITableViewController {
     
-    var awms = [AWM]()
+    var awmArray = [AWM]()
+    var dateFormatter = DateFormatter()
     
+    @IBOutlet weak var awmTableView: UITableView!
+
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        awmTableView.register(UINib(nibName: "AWMTableViewCell", bundle: nil), forCellReuseIdentifier: "AWMCell")
+        
         loadAwms()
         
     }
 
     // MARK: - Table view data source
 
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 1
-//    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return awms.count
+        return awmArray.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AWMCell", for: indexPath)
 
-        // Configure the cell...
-        cell.textLabel?.text = awms[indexPath.row].name
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AWMCell", for: indexPath) as! AWMTableViewCell
         
-        
+        let awm = awmArray[indexPath.row]
+        cell.awmName.text = awm.name
+
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        if let datum = awm.datum {
+            cell.awmDatum.text = dateFormatter.string(from: awm.datum!)
+        } else {
+            cell.awmDatum.text = ""
+        }
+                
         return cell
     }
     
@@ -54,7 +61,7 @@ class AWMTableViewController: UITableViewController {
         let destinationVC = segue.destination as! PitcherTableViewController
         
         if let indexPath = tableView.indexPathForSelectedRow {
-            destinationVC.selectedAWM = awms[indexPath.row]
+            destinationVC.selectedAWM = awmArray[indexPath.row]
         }
     }
     
@@ -77,7 +84,7 @@ class AWMTableViewController: UITableViewController {
         let request: NSFetchRequest<AWM> = AWM.fetchRequest()
         
         do {
-            awms = try context.fetch(request)
+            awmArray = try context.fetch(request)
         } catch {
             print("Fehler beim Laden der Events \(error)")
         }
@@ -100,8 +107,7 @@ class AWMTableViewController: UITableViewController {
             newAWM.name = textField.text!
             newAWM.datum = Date()
             
-            self.awms.append(newAWM)
-            
+            self.awmArray.append(newAWM)
             self.saveAwms()
             
         }
@@ -114,7 +120,7 @@ class AWMTableViewController: UITableViewController {
         }
         
         present(alert, animated: true, completion: nil)
-        
-    }
 
+    }
+    
 }
