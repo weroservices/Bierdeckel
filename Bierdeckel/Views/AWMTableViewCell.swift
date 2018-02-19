@@ -10,6 +10,7 @@ import UIKit
 
 class AWMTableViewCell: UITableViewCell {
 
+    //Outlets für die angezeigten Label
     @IBOutlet weak var awmName: UILabel!
     @IBOutlet weak var awmDatum: UILabel!
 
