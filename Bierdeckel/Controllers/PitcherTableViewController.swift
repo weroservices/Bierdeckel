@@ -45,7 +45,7 @@ class PitcherTableViewController: UITableViewController {
         
         dateFormatter.dateFormat = "HH:mm:ss"
 
-        if let uhrzeit = pitcher.uhrzeit {
+        if pitcher.uhrzeit != nil {
             cell.pitcherUhrzeit.text = dateFormatter.string(from: pitcher.uhrzeit!)
         } else {
             cell.pitcherUhrzeit.text = ""
@@ -55,6 +55,25 @@ class PitcherTableViewController: UITableViewController {
     }
     
     
+    // neu 17.04.2018: Override to support conditional editing of the table view.
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the specified item to be editable.
+        return true
+    }
+    
+    // neu 17.04.2018: Override to support editing the table view.
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            context.delete(pitcherArray[indexPath.row] )
+            self.pitcherArray.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            self.savePitchers()
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+            print("Editing style \(editingStyle) selected")
+        }
+    }
+
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         
         let newPitcher = Pitcher(context: self.context)

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17D47" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AWM" representedClassName=".AWM" syncable="YES" codeGenerationType="class">
         <attribute name="datum" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <relationship name="pitchers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Pitcher" inverseName="parentAWM" inverseEntity="Pitcher" syncable="YES"/>
+        <relationship name="pitchers" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Pitcher" inverseName="parentAWM" inverseEntity="Pitcher" syncable="YES"/>
     </entity>
     <entity name="Pitcher" representedClassName=".Pitcher" syncable="YES" codeGenerationType="class">
         <attribute name="nummer" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -11,7 +11,7 @@
         <relationship name="parentAWM" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AWM" inverseName="pitchers" inverseEntity="AWM" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AWM" positionX="-63" positionY="-54" width="128" height="88"/>
+        <element name="AWM" positionX="-63" positionY="-54" width="128" height="90"/>
         <element name="Pitcher" positionX="133" positionY="15" width="128" height="88"/>
     </elements>
 </model>
