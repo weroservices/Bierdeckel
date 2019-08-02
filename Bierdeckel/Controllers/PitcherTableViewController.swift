@@ -45,8 +45,9 @@ class PitcherTableViewController: UITableViewController {
         
         dateFormatter.dateFormat = "HH:mm:ss"
 
-        if pitcher.uhrzeit != nil {
-            cell.pitcherUhrzeit.text = dateFormatter.string(from: pitcher.uhrzeit!)
+        // 02.08.2019: Optional Binding benutzen
+        if let pitcherUhrzeit = pitcher.uhrzeit {
+            cell.pitcherUhrzeit.text = dateFormatter.string(from: pitcherUhrzeit)
         } else {
             cell.pitcherUhrzeit.text = ""
         }
@@ -61,19 +62,31 @@ class PitcherTableViewController: UITableViewController {
         return true
     }
     
-    // neu 17.04.2018: Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            context.delete(pitcherArray[indexPath.row] )
-            self.pitcherArray.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            self.savePitchers()
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-            print("Editing style \(editingStyle) selected")
+    // neu 02.08.2019: Delete Funktion in editActionsForRowAt umgesetzt.
+    // was erweitert werden soll zum Editieren der Pitcherdaten
+    override func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
+        let trinken = UITableViewRowAction(style: .normal, title: "Trinken") { action, index in
+            print("Drink button tapped")
         }
+        trinken.backgroundColor = .lightGray
+        
+        let ändern = UITableViewRowAction(style: .normal, title: "Ändern") { action, index in
+            print("Edit button tapped")
+        }
+        ändern.backgroundColor = .orange
+        
+        let löschen = UITableViewRowAction(style: .normal, title: "Löschen") { action, index in
+            print("Delete button tapped")
+            self.context.delete(self.pitcherArray[editActionsForRowAt.row] )
+            self.pitcherArray.remove(at: editActionsForRowAt.row)
+            tableView.deleteRows(at: [editActionsForRowAt], with: .fade)
+            self.savePitchers()
+        }
+        löschen.backgroundColor = .blue
+        
+        return [löschen, ändern, trinken]
     }
-
+    
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         
         let newPitcher = Pitcher(context: self.context)

@@ -42,8 +42,10 @@ class AWMTableViewController: UITableViewController {
         cell.awmName.text = awm.name
 
         dateFormatter.dateFormat = "dd.MM.yyyy"
-        if awm.datum != nil {
-            cell.awmDatum.text = dateFormatter.string(from: awm.datum!)
+
+        // 02.08.2019: Optional Binding benutzen
+        if let awmDatum = awm.datum {
+            cell.awmDatum.text = dateFormatter.string(from: awmDatum)
         } else {
             cell.awmDatum.text = ""
         }
