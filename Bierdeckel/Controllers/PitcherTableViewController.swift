@@ -55,36 +55,49 @@ class PitcherTableViewController: UITableViewController {
         return cell
     }
     
-    
-    // neu 17.04.2018: Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    // 02.08.2019: SwipeActions konfigurieren
+    override func tableView(_ tableView: UITableView,
+                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        // Write action code for the trash
+        let löschen = UIContextualAction(style: .normal, title:  "Löschen", handler: { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
+            print("Löschen ...")
+            self.context.delete(self.pitcherArray[indexPath.row] )
+            self.pitcherArray.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            self.savePitchers()
+            success(true)
+        })
+        löschen.backgroundColor = .red
+        
+        // Write action code for the Flag
+        let trinken = UIContextualAction(style: .normal, title:  "Trinken", handler: { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
+            print("Trinken ...")
+            success(true)
+        })
+        trinken.backgroundColor = .orange
+        
+        // Write action code for the More
+        let ändern = UIContextualAction(style: .normal, title:  "Ändern", handler: { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
+            print("Ändern...")
+            success(true)
+        })
+        ändern.backgroundColor = .gray
+        
+        
+        return UISwipeActionsConfiguration(actions: [löschen, ändern, trinken])
     }
     
-    // neu 02.08.2019: Delete Funktion in editActionsForRowAt umgesetzt.
-    // was erweitert werden soll zum Editieren der Pitcherdaten
-    override func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
-        let trinken = UITableViewRowAction(style: .normal, title: "Trinken") { action, index in
-            print("Drink button tapped")
-        }
-        trinken.backgroundColor = .lightGray
+    override func tableView(_ tableView: UITableView,
+                   leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+    {
         
-        let ändern = UITableViewRowAction(style: .normal, title: "Ändern") { action, index in
-            print("Edit button tapped")
-        }
-        ändern.backgroundColor = .orange
+        let markieren = UIContextualAction(style: .normal, title:  "Markieren als gelesen", handler: { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
+            print("Markieren ...")
+            success(true)
+        })
+        markieren.backgroundColor = .blue
+        return UISwipeActionsConfiguration(actions: [markieren])
         
-        let löschen = UITableViewRowAction(style: .normal, title: "Löschen") { action, index in
-            print("Delete button tapped")
-            self.context.delete(self.pitcherArray[editActionsForRowAt.row] )
-            self.pitcherArray.remove(at: editActionsForRowAt.row)
-            tableView.deleteRows(at: [editActionsForRowAt], with: .fade)
-            self.savePitchers()
-        }
-        löschen.backgroundColor = .blue
-        
-        return [löschen, ändern, trinken]
     }
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
