@@ -11,6 +11,7 @@
 		3624B59C203B4E4800AD1466 /* AWMTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3624B59A203B4E4800AD1466 /* AWMTableViewCell.xib */; };
 		3624B59F203B68CF00AD1466 /* PitcherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3624B59D203B68CF00AD1466 /* PitcherTableViewCell.swift */; };
 		3624B5A0203B68CF00AD1466 /* PitcherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3624B59E203B68CF00AD1466 /* PitcherTableViewCell.xib */; };
+		3637CF8022F8805E006B1930 /* EditPitcherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637CF7F22F8805E006B1930 /* EditPitcherViewController.swift */; };
 		36EA245920384EB8002FE005 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EA245820384EB8002FE005 /* AppDelegate.swift */; };
 		36EA245E20384EB8002FE005 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36EA245C20384EB8002FE005 /* Main.storyboard */; };
 		36EA246020384EB8002FE005 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36EA245F20384EB8002FE005 /* Assets.xcassets */; };
@@ -25,6 +26,7 @@
 		3624B59A203B4E4800AD1466 /* AWMTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AWMTableViewCell.xib; sourceTree = "<group>"; };
 		3624B59D203B68CF00AD1466 /* PitcherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitcherTableViewCell.swift; sourceTree = "<group>"; };
 		3624B59E203B68CF00AD1466 /* PitcherTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PitcherTableViewCell.xib; sourceTree = "<group>"; };
+		3637CF7F22F8805E006B1930 /* EditPitcherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPitcherViewController.swift; sourceTree = "<group>"; };
 		36EA245520384EB8002FE005 /* Bierdeckel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bierdeckel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36EA245820384EB8002FE005 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36EA245D20384EB8002FE005 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			children = (
 				36EA246A20384FC1002FE005 /* AWMTableViewController.swift */,
 				36EA247020385303002FE005 /* PitcherTableViewController.swift */,
+				3637CF7F22F8805E006B1930 /* EditPitcherViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 				36EA247420387039002FE005 /* Bierdeckel.xcdatamodeld in Sources */,
 				36EA247120385303002FE005 /* PitcherTableViewController.swift in Sources */,
 				3624B59B203B4E4800AD1466 /* AWMTableViewCell.swift in Sources */,
+				3637CF8022F8805E006B1930 /* EditPitcherViewController.swift in Sources */,
 				36EA246B20384FC1002FE005 /* AWMTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

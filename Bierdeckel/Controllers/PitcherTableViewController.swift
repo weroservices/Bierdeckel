@@ -9,11 +9,12 @@
 import UIKit
 import CoreData
 
-class PitcherTableViewController: UITableViewController {
+class PitcherTableViewController: UITableViewController, EditPitcherDelegate {
     
     @IBOutlet weak var pitcherTableView: UITableView!
     
     var pitcherArray = [Pitcher]()
+    var selectedPitcher : Pitcher?
     var dateFormatter = DateFormatter()
 
     var selectedAWM : AWM? {
@@ -30,7 +31,8 @@ class PitcherTableViewController: UITableViewController {
         pitcherTableView.register(UINib(nibName: "PitcherTableViewCell", bundle: nil), forCellReuseIdentifier: "PitcherCell")
 
     }
-
+    
+    //MARK: Datasource Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         return pitcherArray.count
@@ -55,10 +57,32 @@ class PitcherTableViewController: UITableViewController {
         return cell
     }
     
-    // 02.08.2019: SwipeActions konfigurieren
+    //MARK: Delegate Methods
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "goToEditPitcher", sender: self)
+    }
+    
+    //MARK: Prepare Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! EditPitcherViewController
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            destinationVC.selectedPitcher = pitcherArray[indexPath.row]
+
+        } else if let pitcher = selectedPitcher {
+            destinationVC.selectedPitcher = pitcher
+
+        }
+        
+        destinationVC.delegate = self
+    }
+
+    //MARK: Swipe Actions konfigurieren
+    // 02.08.2019
     override func tableView(_ tableView: UITableView,
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        // Write action code for the trash
+  
+        // Action code für Löschen
         let löschen = UIContextualAction(style: .normal, title:  "Löschen", handler: { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
             print("Löschen ...")
             self.context.delete(self.pitcherArray[indexPath.row] )
@@ -69,15 +93,19 @@ class PitcherTableViewController: UITableViewController {
         })
         löschen.backgroundColor = .red
         
-        // Write action code for the Flag
+        // Action code für Trinken
         let trinken = UIContextualAction(style: .normal, title:  "Trinken", handler: { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
             print("Trinken ...")
             success(true)
         })
         trinken.backgroundColor = .orange
         
-        // Write action code for the More
+        // Action code für Änderm
         let ändern = UIContextualAction(style: .normal, title:  "Ändern", handler: { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
+            
+            self.selectedPitcher =  self.pitcherArray[indexPath.row]
+            self.performSegue(withIdentifier: "goToEditPitcher", sender: self)
+            
             print("Ändern...")
             success(true)
         })
@@ -91,7 +119,7 @@ class PitcherTableViewController: UITableViewController {
                    leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
     {
         
-        let markieren = UIContextualAction(style: .normal, title:  "Markieren als gelesen", handler: { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
+        let markieren = UIContextualAction(style: .normal, title:  "Markiern als getrunken", handler: { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
             print("Markieren ...")
             success(true)
         })
@@ -100,6 +128,7 @@ class PitcherTableViewController: UITableViewController {
         
     }
     
+    //MARK: Actions
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         
         let newPitcher = Pitcher(context: self.context)
@@ -146,6 +175,11 @@ class PitcherTableViewController: UITableViewController {
         
         tableView.reloadData()
         
+    }
+ 
+    //MARK: EditPitcherDelegate Protocol Method
+    func saveChanges(forPitcher: Pitcher) {
+        savePitchers()
     }
 
 }
