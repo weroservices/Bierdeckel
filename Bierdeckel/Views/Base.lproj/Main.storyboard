@@ -19,11 +19,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AWMCell" id="Vlc-oA-MVM">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="AWMCell" id="Vlc-oA-MVM">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vlc-oA-MVM" id="Zaz-mf-vVh">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="327" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -47,7 +47,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JMw-uX-be7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="669.60000000000002" y="156.97151424287858"/>
+            <point key="canvasLocation" x="-238" y="159"/>
         </scene>
         <!--Pitcher-->
         <scene sceneID="AnD-xZ-Poi">
@@ -88,7 +88,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ttQ-TH-hqG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1414" y="157"/>
+            <point key="canvasLocation" x="657" y="159"/>
         </scene>
         <!--Edit Pitcher-->
         <scene sceneID="uNY-sp-Mv7">
@@ -140,7 +140,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g4U-rX-XuM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2125.5999999999999" y="158.77061469265368"/>
+            <point key="canvasLocation" x="1486" y="159"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vac-0L-WP2">
@@ -158,7 +158,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VYb-Vf-5je" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-134" y="157"/>
+            <point key="canvasLocation" x="-988" y="159"/>
         </scene>
     </scenes>
 </document>

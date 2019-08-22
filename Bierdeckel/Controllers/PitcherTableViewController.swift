@@ -29,6 +29,8 @@ class PitcherTableViewController: UITableViewController, EditPitcherDelegate {
         super.viewDidLoad()
         
         pitcherTableView.register(UINib(nibName: "PitcherTableViewCell", bundle: nil), forCellReuseIdentifier: "PitcherCell")
+        
+//        tableView.rowHeight = 91
 
     }
     
@@ -92,13 +94,26 @@ class PitcherTableViewController: UITableViewController, EditPitcherDelegate {
             success(true)
         })
         löschen.backgroundColor = .red
+        löschen.image = UIImage(named: "trash-icon")
         
         // Action code für Trinken
         let trinken = UIContextualAction(style: .normal, title:  "Trinken", handler: { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
-            print("Trinken ...")
+//            print("Trinken ...")
+//            var textField = UITextField()
+            
+            let alert = UIAlertController(title: "Jawoll!", message: "So ist es richtig!", preferredStyle: .alert)
+            
+            let action = UIAlertAction(title: "Weitermachen!", style: .default) { (action) in
+            }
+
+            alert.addAction(action)
+            
+            self.present(alert, animated: true, completion: nil)
+            
             success(true)
         })
         trinken.backgroundColor = .orange
+        trinken.image = UIImage(named: "beer-icon")
         
         // Action code für Änderm
         let ändern = UIContextualAction(style: .normal, title:  "Ändern", handler: { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
@@ -109,25 +124,25 @@ class PitcherTableViewController: UITableViewController, EditPitcherDelegate {
             print("Ändern...")
             success(true)
         })
-        ändern.backgroundColor = .gray
-        
+        ändern.backgroundColor = .purple
+        ändern.image = UIImage(named: "edit-icon-2")
         
         return UISwipeActionsConfiguration(actions: [löschen, ändern, trinken])
     }
     
-    override func tableView(_ tableView: UITableView,
-                   leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
-    {
-        
-        let markieren = UIContextualAction(style: .normal, title:  "Markiern als getrunken", handler: { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
-            print("Markieren ...")
-            success(true)
-        })
-        markieren.backgroundColor = .blue
-        return UISwipeActionsConfiguration(actions: [markieren])
-        
-    }
-    
+//    override func tableView(_ tableView: UITableView,
+//                   leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+//    {
+//        let markieren = UIContextualAction(style: .normal, title:  "Markieren als getrunken", handler: { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
+//            print("Markieren ...")
+//            success(true)
+//        })
+//        
+//        markieren.backgroundColor = .blue
+//        return UISwipeActionsConfiguration(actions: [markieren])
+//        
+//    }
+//    
     //MARK: Actions
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         
